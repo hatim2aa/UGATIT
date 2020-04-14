@@ -70,13 +70,10 @@ This repository provides the **official Tensorflow implementation** of the follo
 ```
 > git clone https://github.com/kmswlee/UGATIT
 > cd UGATIT
-> pip install -r requirements-gpu.txt
-# if you can't use gpu, use requirements.txt
-> apt-get -y install curl gnupg
-> curl -sL https://deb.nodesource.com/setup_12.x 
-> apt-get -y install nodejs
-> rm -rf node_modules && npm install
-> npm start
+> apt install -y libsm6 libxext6 libxrender-dev
+> pip install flask -r requirements-gpu.txt
+## if you can't use gpu, use 'requirements.txt'
+> python app.py
 ```
 you can browser http://localhost
 

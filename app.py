@@ -77,4 +77,4 @@ with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as sess:
         return send_file(output_file_in_memory, mimetype='image/jpeg')
 
     if __name__ == "__main__":
-        app.run(debug=False, port=3010, host='0.0.0.0', threaded=False)
+        app.run(debug=False, port=80, host='0.0.0.0', threaded=False)
