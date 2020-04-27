@@ -76,5 +76,13 @@ with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as sess:
         output_file_in_memory = selfie2anime(gan, input_file_in_memory)
         return send_file(output_file_in_memory, mimetype='image/jpeg')
 
+    @app.route('/health')
+    def health():
+        return "ok"
+
+    @app.route('/')
+    def main(): 
+        return app.send_static_file('index.html')
+
     if __name__ == "__main__":
         app.run(debug=False, port=80, host='0.0.0.0', threaded=False)
