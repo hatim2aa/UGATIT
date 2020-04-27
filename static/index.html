@@ -39,22 +39,21 @@
                     <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
                 </div>
             </div>
-
-            <div id='result'>
-                <hr class="my-4">
-                <h2>Result</h2>
+            <div id='result' style="margin-left: auto; margin-right: auto;">
                 <div id="resultText"></div>
                 <div id="log" style="word-wrap: break-word"></div>
                 <img id="resultImage" src="" alt="">
             </div>
-
+            <div id="sample" style="width: 640">Sample image
+                <img src="static/sampleimg.png" style="width: 100%; height:auto;">
+            </div>
             <script>
                 let time_obj = document.getElementById("time");
                 let timer = undefined;
                 let start = undefined;
                 var doubleSubmitFlag = false;
                 document.getElementById("preloader").style.display = "none";
-
+                
                 function doubleSubmitCheck(){
                     if(doubleSubmitFlag){
                         return doubleSubmitFlag;
@@ -90,6 +89,8 @@
                         url="/anime2selfie"
                     }
                     // 2. Timer
+                    document.getElementById('sample').style.display = 'none';
+                    document.getElementById('result').style.display = "none";
                     document.getElementById("preloader").style.display = "block";
                     start = 0;
                     timer= setInterval(() => {
