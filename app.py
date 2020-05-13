@@ -65,6 +65,8 @@ with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as sess:
         input_file_in_memory = request.files['file']
         if not input_file_in_memory:
             return jsonify({'message': 'nofile'}), 400
+        if input_file_in_memory.content_type not in ['image/jpeg', 'image/jpg', 'image/png']:
+            return jsonify({'message': 'only support jpeg, jpg or png'}), 400
         output_file_in_memory = anime2selfie(gan, input_file_in_memory)
         return send_file(output_file_in_memory, mimetype='image/jpeg')
 
@@ -73,6 +75,8 @@ with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as sess:
         input_file_in_memory = request.files['file']
         if not input_file_in_memory:
             return jsonify({'message': 'nofile'}), 400
+        if input_file_in_memory.content_type not in ['image/jpeg', 'image/jpg', 'image/png']:
+            return jsonify({'message': 'only support jpeg, jpg or png'}), 400
         output_file_in_memory = selfie2anime(gan, input_file_in_memory)
         return send_file(output_file_in_memory, mimetype='image/jpeg')
 
