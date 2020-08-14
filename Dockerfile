@@ -1,4 +1,4 @@
-FROM python:3.6.10
+FROM tensorflow/tensorflow:1.14.0-gpu-py3
 
 CMD ["bash"]
 
@@ -6,22 +6,14 @@ RUN apt-get update
 RUN pip install --upgrade pip
 RUN apt install -y libsm6 libxext6 libxrender-dev
 
-# Install Node.js 8 and npm 5
-RUN apt-get -y install curl gnupg
-RUN curl -sL https://deb.nodesource.com/setup_12.x  | bash -
-RUN apt-get -y install nodejs
-#RUN mkdir -p /workspace
 WORKDIR /workspace
+COPY --from=wodndl895/ugatit-gpu /workspace/checkpoint /workspace/checkpoint
 
-RUN rm -rf node_modules && npm install
-
-COPY package.json ./
-RUN npm install
+COPY requirements-gpu.txt .
+#install python package
+RUN pip install flask -r requirements-gpu.txt
 
 COPY . .
 
-#install python package
-RUN pip install -r requirements.txt
-
 EXPOSE 80
-ENTRYPOINT npm start
+CMD python app.py
