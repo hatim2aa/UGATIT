@@ -11,7 +11,8 @@ COPY --from=wodndl895/ugatit-gpu /workspace/checkpoint /workspace/checkpoint
 
 COPY requirements-gpu.txt .
 #install python package
-RUN pip install flask -r requirements-gpu.txt
+RUN pip install flask
+RUN pip install -r requirements-gpu.txt
 
 COPY . .
 
